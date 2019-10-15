@@ -48,7 +48,7 @@
             <td>{{ flight.id }}</td>
             <td>{{ flight.from }}</td>
             <td>{{ flight.to }}</td>
-            <td>{{ flight.date }}</td>
+            <td>{{ flight.date | date:'dd.MM.yyyy HH:mm' }}</td>
             <td>
                 <a (click)="select(flight)">Select</a> 
             </td>
