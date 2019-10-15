@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { FlightSearchComponent } from './flight-search/flight-search.component';
 
 @NgModule({
    imports: [
@@ -16,7 +17,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
    declarations: [
       AppComponent,
       SidebarComponent,
-      NavbarComponent
+      NavbarComponent,
+      FlightSearchComponent
    ],
    providers: [],
    bootstrap: [
