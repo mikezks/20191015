@@ -6,11 +6,23 @@
 
   <div class="content">
 
-  <form>
+  <form #f="ngForm">
     <div class="form-group">
       <label>From:</label>
-      <input [(ngModel)]="from" name="from" class="form-control">
+      <input
+        [(ngModel)]="from"
+        name="from"
+        class="form-control"
+        required
+        minlength="3"
+        [city]="['Wien','Berlin']">
     </div>
+    <pre *ngIf="f?.controls['from']?.invalid">Error aufgetreten.</pre>
+    <pre *ngIf="f?.controls['from']?.hasError('required')">Das ist ein Pflichtfeld.</pre>
+    <pre *ngIf="f?.controls['from']?.hasError('minlength')">Bitte mindestens 3 Zeichen eingeben.</pre>
+    <pre *ngIf="f?.controls['from']?.hasError('city')">Eingegebene Stadt ist nicht auf der Whitelist. Erlaubte Städte: {{
+      	f?.controls['from']?.errors.city.validCities
+    }}</pre>
     <div class="form-group">
       <label>To:</label>
       <input [(ngModel)]="to" name="to" class="form-control">
@@ -19,7 +31,7 @@
     <div class="form-group">
       <button
         class="btn btn-default"
-        [disabled]="!from || !to"
+        [disabled]="f?.invalid"
         (click)="search()">Search</button>
     </div>
   </form>
