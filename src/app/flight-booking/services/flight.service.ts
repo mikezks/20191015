@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { Flight } from '../entities/flight';
+import { Flight } from '../../entities/flight';
 import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
 
 @Injectable({
