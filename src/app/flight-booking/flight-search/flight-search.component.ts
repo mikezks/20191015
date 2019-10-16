@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Flight } from '../../entities/flight';
 import { FlightService } from '../services/flight.service';
+import { tap, first } from 'rxjs/operators';
 
 export interface CityFilter {
   from: string;
@@ -30,6 +31,10 @@ export class FlightSearchComponent implements OnInit {
 
   ngOnInit() {
     this.flightService.filter
+      .pipe(
+        tap(cityFilter => console.log('City Filter', cityFilter)),
+        first()
+      )
       .subscribe(
         cityFilter => {
           this.from = cityFilter.from;
