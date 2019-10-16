@@ -1,14 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { Flight } from '../../entities/flight';
 import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
+import { CityFilter } from '../flight-search/flight-search.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FlightService {
+  flights: Flight[] = [];
+  filter = new BehaviorSubject<CityFilter>({
+    from: 'Hamburg',
+    to: 'Graz'
+  });
 
   constructor(private http: HttpClient) { }
 
@@ -38,6 +44,7 @@ export class FlightService {
       .get<Flight[]>(url, { headers, params })
       .pipe(
         //tap(flights => console.log('I\'m the FlightService', flights))
+        tap(flights => this.flights = flights)
       );
   }
 }

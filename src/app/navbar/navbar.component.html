@@ -14,7 +14,9 @@
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="ti-panel"></i>
-                        <p>Stats</p>
+                        <p *ngIf="flightService.filter | async as cityFilter">
+                            {{ cityFilter.from }} - {{ cityFilter.to }}
+                        </p>
                     </a>
                 </li>
                 <li class="dropdown">

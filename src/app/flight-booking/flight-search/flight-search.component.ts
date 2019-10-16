@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Flight } from '../../entities/flight';
 import { FlightService } from '../services/flight.service';
 
+export interface CityFilter {
+  from: string;
+  to: string;
+}
+
 @Component({
   selector: 'app-flight-search',
   templateUrl: './flight-search.component.html',
@@ -10,25 +15,42 @@ import { FlightService } from '../services/flight.service';
 export class FlightSearchComponent implements OnInit {
   from = 'Hamburg';
   to = 'Graz';
-  flights: Flight[] = [];
+  // flights: Flight[] = [];
   selectedFlight: Flight;
   basket: object = {
     "3": true,
     "5": true
   };
 
+  get flights() {
+    return this.flightService.flights;
+  }
+
   constructor(private flightService: FlightService) { }
 
   ngOnInit() {
+    this.flightService.filter
+      .subscribe(
+        cityFilter => {
+          this.from = cityFilter.from;
+          this.to = cityFilter.to;
+        }
+      );
+  }
+
+  updateFilter(): void {
+    this.flightService.filter.next({
+      from: this.from,
+      to: this.to
+    });
   }
 
   search(): void {
+    this.updateFilter();
+
     this.flightService
       .find(this.from, this.to)
-      .subscribe(
-        flights => this.flights = flights,
-        err => console.error('Error on loading Flights', err)
-      );
+      .subscribe();
   }
 
   select(flight: Flight): void {

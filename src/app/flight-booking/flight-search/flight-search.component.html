@@ -27,20 +27,20 @@
   </div>
 </div>
 
-  <div class="row">
-    <div
-      *ngFor="let flight of flights"
-      class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-      <app-flight-card
-        [item]="flight"
-        [(selected)]="basket[flight.id]"></app-flight-card>
-    </div>
+<div class="row">
+  <div
+    *ngFor="let flight of flights"
+    class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+    <app-flight-card
+      [item]="flight"
+      [(selected)]="basket[flight.id]"></app-flight-card>
   </div>
+</div>
 
-  <div class="card">
-    <div class="content">
-      <pre>{{
-        basket | json
-      }}</pre>
-    </div>
+<div class="card">
+  <div class="content">
+    <pre>{{
+      basket | json
+    }}</pre>
   </div>
+</div>
