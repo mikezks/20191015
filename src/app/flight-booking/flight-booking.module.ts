@@ -4,20 +4,21 @@ import { FlightSearchComponent } from './flight-search/flight-search.component';
 import { SharedModule } from '../shared/shared.module';
 import { FlightCardComponent } from './flight-card/flight-card.component';
 import { FlightEditComponent } from './flight-edit/flight-edit.component';
+import { PassengerSearchComponent } from './passenger-search/passenger-search.component';
+import { FlightBookingRoutingModule } from './flight-booking-routing.module';
 
 @NgModule({
   declarations: [
     FlightSearchComponent,
     FlightCardComponent,
-    FlightEditComponent
+    FlightEditComponent,
+    PassengerSearchComponent
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    FlightBookingRoutingModule
   ],
-  exports: [
-    FlightSearchComponent,
-    FlightEditComponent
-  ]
+  exports: []
 })
 export class FlightBookingModule { }

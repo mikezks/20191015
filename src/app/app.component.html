@@ -10,12 +10,13 @@
 
         <div class="content">           
             <!-- <h1>{{title}}</h1> -->  
-            <button
+            <!-- <button
                 class="btn btn-default"
                 (click)="toggleView = !toggleView">{{ toggleView ? 'edit' : 'search'}}</button>
             <br><br>
             <app-flight-search *ngIf="toggleView"></app-flight-search>
-            <app-flight-edit *ngIf="!toggleView"></app-flight-edit>   
+            <app-flight-edit *ngIf="!toggleView"></app-flight-edit> -->
+            <router-outlet></router-outlet>
         </div>
     </div>
 

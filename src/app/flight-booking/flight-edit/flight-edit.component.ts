@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { validateCity, validateCityWithParams } from '../../shared/validators/validate-city';
 import { delay } from 'q';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-flight-edit',
@@ -10,10 +11,22 @@ import { delay } from 'q';
 })
 export class FlightEditComponent implements OnInit {
   editForm: FormGroup;
+  id: number;
+  showDetail: boolean;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute) {}
 
   ngOnInit() {
+    this.route.paramMap
+      .subscribe(
+        params => {
+          this.id = +params.get('id');
+          this.showDetail = !!params.get('showDetail');
+        }
+      );
+
     this.editForm = this.fb.group({
       id: [
         1
