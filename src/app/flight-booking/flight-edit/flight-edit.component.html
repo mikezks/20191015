@@ -1,0 +1,39 @@
+<form [formGroup]="editForm">
+    <div class="form-group">
+        <label>Id:</label>
+        <input formControlName="id" class="form-control">
+    </div>
+    
+    <div class="form-group">
+        <label>From:</label>
+        <input formControlName="from" class="form-control">
+    </div>
+
+    <pre *ngIf="editForm.controls['from'].invalid">Error aufgetreten.</pre>
+    <pre *ngIf="editForm.controls['from'].hasError('required')">Das ist ein Pflichtfeld.</pre>
+    <pre *ngIf="editForm.controls['from'].hasError('minlength')">Bitte mindestens 3 Zeichen eingeben.</pre>
+    <pre *ngIf="editForm.controls['from'].hasError('city')">Eingegebene Stadt ist nicht auf der Whitelist. Erlaubte Städte: {{
+        editForm.controls['from'].errors.city.validCities
+    }}</pre>
+    
+    <div class="form-group">
+        <label>To:</label>
+        <input formControlName="to" class="form-control">
+    </div>
+
+    <pre *ngIf="editForm.controls['to'].invalid">Error aufgetreten.</pre>
+    <pre *ngIf="editForm.controls['to'].hasError('required')">Das ist ein Pflichtfeld.</pre>
+    <pre *ngIf="editForm.controls['to'].hasError('minlength')">Bitte mindestens 3 Zeichen eingeben.</pre>
+    <pre *ngIf="editForm.controls['to'].hasError('city')">Eingegebene Stadt ist nicht auf der Whitelist. Erlaubte Städte: {{
+        editForm.controls['to'].errors.city.validCities
+    }}</pre>
+    
+    <div class="form-group">
+        <label>Date:</label>
+        <input formControlName="date" class="form-control">
+    </div>
+    
+    <div class="form-group">
+        <button (click)="save()" class="btn btn-default">Save</button>
+    </div>
+</form>
