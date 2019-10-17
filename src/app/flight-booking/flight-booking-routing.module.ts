@@ -3,11 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { FlightSearchComponent } from './flight-search/flight-search.component';
 import { FlightEditComponent } from './flight-edit/flight-edit.component';
 import { PassengerSearchComponent } from './passenger-search/passenger-search.component';
+import { FlightBookingComponent } from './flight-booking.component';
 
 
 const routes: Routes = [
   {
-    path: 'flight-booking',
+    path: '',
+    component: FlightBookingComponent,
     children: [
       {
         path: 'flight-search',

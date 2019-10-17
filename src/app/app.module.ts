@@ -8,7 +8,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { SharedModule } from './shared/shared.module';
 import { FlightBookingModule } from './flight-booking/flight-booking.module';
 import { HomeComponent } from './home/home.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule, PreloadAllModules } from '@angular/router';
 import { APP_ROUTES } from './app.routes';
 
 @NgModule({
@@ -21,8 +21,10 @@ import { APP_ROUTES } from './app.routes';
    imports: [
       BrowserModule,
       HttpClientModule,
-      FlightBookingModule,
-      RouterModule.forRoot(APP_ROUTES)
+      // FlightBookingModule,
+      RouterModule.forRoot(APP_ROUTES, {
+         preloadingStrategy: PreloadAllModules
+      })
    ],
    providers: [],
    bootstrap: [
