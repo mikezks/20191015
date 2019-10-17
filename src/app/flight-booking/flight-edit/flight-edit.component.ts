@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { validateCity, validateCityWithParams } from '../../shared/validators/validate-city';
+import { delay } from 'q';
 
 @Component({
   selector: 'app-flight-edit',
@@ -10,7 +11,7 @@ import { validateCity, validateCityWithParams } from '../../shared/validators/va
 export class FlightEditComponent implements OnInit {
   editForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.editForm = this.fb.group({
@@ -28,7 +29,7 @@ export class FlightEditComponent implements OnInit {
         'Hamburg',
         [
           Validators.required,
-          validateCityWithParams(['Wien','Berlin'])
+          validateCityWithParams(['Wien', 'Berlin'])
         ]
       ],
       date: [

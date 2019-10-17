@@ -29,6 +29,43 @@ export class FlightSearchComponent implements OnInit {
 
   constructor(private flightService: FlightService) { }
 
+  arrayObjectOperations(): void {
+    const arr1 = [ 'Wien', 'Graz' ];
+    const arr2 = [ 'Berlin', 'Madrid', 'Rom', 'Barcelona' ];
+
+    // Add array items with Spread Operator
+    const resultArr = [
+      ...arr1,
+      ...arr2.slice(1, 3)
+    ];
+
+    const flight = {
+      id: 1,
+      from: 'Berlin',
+      to: 'Amsterdam',
+      date: (new Date()).toISOString(),
+      delayed: false
+    };
+
+    // Add object properties with Spread Operator
+    const myFight = {
+      ...flight,
+      delayed: true
+    };
+
+    // Mutable change
+    flight.delayed = true;
+
+    // Deconstruction of object
+    const { delayed, date, to,  ...reducedFlight } = flight;
+
+    // Direct assignment of new object properties
+    const minimalFlight = {
+      id: flight.id,
+      from: flight.from
+    };
+  }
+
   ngOnInit() {
     this.flightService.filter
       .pipe(
